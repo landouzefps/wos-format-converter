@@ -1,2 +1,85 @@
-# wos-format-converter
-Convert Web of Science files between tab-delimited, Excel, and plain-text formats
+# Web of Science Format Converter
+
+This repository contains two Python scripts that allow you to convert **Web of Science** bibliographic data between the following formats:
+
+- `TabDelimited.txt` → `WOS.xlsx` and `PlainText.txt`
+- `Filtered WOS.xlsx` → `Filtered TabDelimited.txt` and `Filtered PlainText.txt`
+
+These tools are particularly useful when you:
+- Need to extract cited references (which the default WOS Excel export omits).
+- Apply document filtering using tools like PRISMA and need to export the cleaned dataset.
+
+---
+
+## 🔧 Scripts Overview
+
+### 1. `WOS_Converter_TabDelimited_to_xlsx_PlainText.py`
+**Purpose**: Converts the WOS `TabDelimited.txt` export file to:
+- A full-featured Excel file (`WOS.xlsx`)
+- A plain-text Web of Science format file (`PlainText.txt`) that includes full tagging (e.g., `AU`, `CR`, etc.)
+
+> Use this script **right after downloading** from Web of Science.
+
+---
+
+### 2. `WOS_Converter_Filtered_xlsx_to_TabDelimitedText_PlainText.py`
+**Purpose**: After filtering your Excel file (e.g., manually or via PRISMA), use this script to:
+- Reconstruct the tab-delimited format (`TabDelimited.txt`)
+- Recreate the tagged plain-text format (`PlainText.txt`) for further processing
+
+> Use this after filtering your Excel (`WOS_Filtered.xlsx`) to retain only relevant records.
+
+---
+
+## 💡 How to Use
+
+1. Clone this repository:
+    ```bash
+    git clone https://github.com/yourusername/wos-format-converter.git
+    cd wos-format-converter
+    ```
+
+2. Install dependencies:
+    ```bash
+    pip install pandas
+    ```
+
+3. Run the appropriate script based on your workflow:
+    ```bash
+    python WOS_Converter_TabDelimited_to_xlsx_PlainText.py
+    # OR
+    python WOS_Converter_Filtered_xlsx_to_TabDelimitedText_PlainText.py
+    ```
+
+---
+
+## 📂 Input/Output Examples
+
+**Initial Conversion:**
+- Input: `TabDelimited.txt`
+- Output: `WOS.xlsx`, `PlainText.txt`
+
+**After Filtering:**
+- Input: `WOS_Filtered.xlsx`
+- Output: `TabDelimited_Filtered.txt`, `PlainText_Filtered.txt`
+
+---
+
+## 📌 Notes
+
+- The conversion preserves essential Web of Science tags (`AU`, `TI`, `CR`, etc.)
+- Cited references (`CR`) are correctly included in the plain-text output, unlike in the native WOS Excel export
+- Column mapping is based on the official WOS format standard
+
+---
+
+## ✍️ Author
+
+Created by [Nasser Khalili]  
+If you use this tool in your research, feel free to give a ⭐ or cite the repository.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
