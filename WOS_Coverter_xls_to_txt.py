@@ -101,7 +101,11 @@ print(f"→ Tab‑delimited file written to {tabdelim_path}")
 
 # 6) Output #2: PlainText.txt (Web of Science format)
 def format_list_field(s, tag):
-    parts = [p.strip() for p in s.split(";") if p.strip()]
+    if pd.isna(s) or not str(s).strip():
+        return []
+    parts = [p.strip() for p in str(s).split(";") if p.strip()]
+    if not parts:
+        return []
     lines = [f"{tag} {parts[0]}"]
     lines += [f"   {p}" for p in parts[1:]]
     return lines
