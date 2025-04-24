@@ -82,24 +82,52 @@ col_map = {
     "UT (Unique WOS ID)":  "UT"
 }
 
-# 2) Load Excel
+# Load Excel file
 df = pd.read_excel(excel_path, dtype=str)
 
-# 3) Drop all columns after "UT (Unique WOS ID)"
-if last_column_name in df.columns:
-    cutoff_index = df.columns.get_loc(last_column_name) + 1
-    df = df.iloc[:, :cutoff_index]
-else:
-    raise ValueError(f"'{last_column_name}' column not found in input file.")
-
-# 4) Rename to WOS short tags
+# Map Excel headers to WoS short codes
 df = df.rename(columns={k: v for k, v in col_map.items() if k in df.columns})
+print("Columns after renaming:", df.columns.tolist())
 
-# 5) Output #1: TabDelimited.txt
+# Check for critical columns
+critical_cols = ["TI", "SO", "AU"]
+missing_critical = [col for col in critical_cols if col not in df.columns]
+if missing_critical:
+    raise ValueError(f"Missing critical columns: {missing_critical}. Update col_map.")
+
+# Generate placeholder UT if missing
+if "UT" not in df.columns:
+    print("UT column not found. Generating placeholders for all records.")
+    df["UT"] = [f"SCOPUS:ID{idx:06d}" for idx in range(len(df))]
+else:
+    def generate_ut(row, idx):
+        if pd.notna(row["UT"]) and str(row["UT"]).strip():
+            return row["UT"]
+        if pd.notna(row.get("DI")) and str(row["DI"]).strip():
+            return f"SCOPUS:{row['DI']}"
+        return f"SCOPUS:ID{idx:06d}"
+    df["UT"] = [generate_ut(row, idx) for idx, row in df.iterrows()]
+
+# Deduplicate based on critical columns
+print("Rows before deduplication:", len(df))
+df = df.drop_duplicates(subset=critical_cols, keep="first")
+print("Rows after deduplication:", len(df))
+
+# Normalize field separators
+def normalize_field(s):
+    if pd.isna(s) or not str(s).strip():
+        return ""
+    return str(s).replace(",", ";").strip()
+
+for col in ["AU", "AF", "C1", "CR", "DE", "ID"]:
+    if col in df.columns:
+        df[col] = df[col].apply(normalize_field)
+
+# Output 1: Tab-delimited file
 df.to_csv(tabdelim_path, sep="\t", index=False, encoding="utf-8")
-print(f"→ Tab‑delimited file written to {tabdelim_path}")
+print(f"Tab-delimited file written to {tabdelim_path}")
 
-# 6) Output #2: PlainText.txt (Web of Science format)
+# Output 2: Plaintext file in WoS format
 def format_list_field(s, tag):
     if pd.isna(s) or not str(s).strip():
         return []
@@ -111,29 +139,41 @@ def format_list_field(s, tag):
     return lines
 
 tag_order = [
-    "PT","AU","AF","TI","SO","LA","DT","DE","ID","AB","C1","C3","RP","EM",
-    "RI","OI","CR","NR","TC","Z9","U1","U2","PU","PI","PA","SN","EI","J9","JI",
-    "PD","PY","DI","EA","PG","WC","WE","SC","GA","UT","OA","DA"
+    "PT", "AU", "AF", "TI", "SO", "LA", "DT", "DE", "ID", "AB", "C1", "C3", "RP", "EM",
+    "RI", "OI", "CR", "NR", "TC", "Z9", "U1", "U2", "PU", "PI", "PA", "SN", "EI", "J9", "JI",
+    "PD", "PY", "DI", "EA", "PG", "WC", "WE", "SC", "GA", "UT", "OA", "DA"
 ]
 
 lines = ["FN Clarivate Analytics Web of Science", "VR 1.0"]
-
-for _, row in df.iterrows():
+skipped_records = 0
+for idx, row in df.iterrows():
     record = []
+    has_critical = all(pd.notna(row[col]) and str(row[col]).strip() for col in critical_cols)
     for tag in tag_order:
         val = row.get(tag)
-        if pd.isna(val) or not val:
+        if pd.isna(val) or not str(val).strip():
             continue
-        if tag in {"AU","AF","C1","CR"}:
-            record += format_list_field(val, tag)
+        if tag in {"AU", "AF", "C1", "CR"}:
+            formatted = format_list_field(val, tag)
+            if formatted:
+                record += formatted
         else:
             record.append(f"{tag} {val}")
-    if record:
+    if record and has_critical:
         lines.extend(record)
         lines.append("ER")
-        lines.append("")  # blank line between records
+        lines.append("")
+    else:
+        skipped_records += 1
+        print(f"Skipped record {idx}: Missing critical fields")
 
 with open(plaintext_path, "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 
-print(f"→ Plain‑text tagged file written to {plaintext_path}")
+# Diagnostics
+print(f"Plaintext file written to {plaintext_path}")
+print(f"Records processed: {len(df) - skipped_records}")
+print(f"Records skipped: {skipped_records}")
+with open(plaintext_path, "r", encoding="utf-8") as f:
+    er_count = f.read().count("ER")
+
